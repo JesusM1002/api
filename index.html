@@ -1,0 +1,35 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<title>Drinks</title>
+</head>
+<body  class="container" >
+<table id="datos" class="table table-dark table-striped">
+<script>
+getData();
+async function getData(){
+const response= await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=mojito')
+console.log(response);
+const data= await response.json();
+console.log(data);
+length=data.drinks.length;
+console.log(data);
+var temp="";
+for(i=0;i<length;i++)
+{
+temp+="<tr>";
+temp+="<td>"+data.drinks[i].strDrink+"</td>";
+temp+="<td>"+data.drinks[i].strGlass+"</td>";
+temp+="<td> <img src = '"+ data.drinks[i].strDrinkThumb+"' width=200 heigh=200> </img> </td>";
+ 
+temp+="<td>"+data.drinks[i].strInstructions+"</td>";
+}
+document.getElementById("datos").innerHTML=temp;
+}
+</script>
+</table>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
